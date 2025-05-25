@@ -18,10 +18,10 @@ class checkSiteAddress(Script):
                     self.log_success(site)
                 else:
                     self.log_info(site, f'Site name: {site.name}, Physical address {site.physical_address}')
-                    g = geocoder.osm(site.physical_address)
+                    g = geocoder.google(site.physical_address)
                     self.log_info(site, f'Site name: {site.name}, Geocoding result: {g}')
                     if g:
-                        self.log_warning(site, f'Missing geo location - possible ({round(g.x,6)}, {round(g.y,6)})')
+                        self.log_warning(site, f'Missing geo location - possible ({round(g.lat,6)}, {round(g.lng,6)})')
                     else:
                         self.log_warning(site, f'Missing geo location ({site.latitude}, {site.longitude})')    
             else:
