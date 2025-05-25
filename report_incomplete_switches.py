@@ -13,4 +13,5 @@ class ListRacks(Script):
             return
 
         for rack in racks:
-            self.log_info(f"Rack: {rack.name}, Site: {rack.site.name}, Status: {rack.status}")
+            self.log_info(f"ID: {rack.pk}, Rack: {rack.name}, Site: {rack.site.name}, Status: {rack.status}")
+            
