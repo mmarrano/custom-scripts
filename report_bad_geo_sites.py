@@ -17,10 +17,12 @@ class checkSiteAddress(Script):
                 if site.latitude and site.longitude:
                     self.log_success(site)
                 else:
+                    self.log_info(site, f'Site name: {site.name}, Physical address {site.physical_address}')
                     g = geocoder.osm(site.physical_address)
+                    self.log_info(site, f'Site name: {site.name}, Geocoding result: {g}')
                     if g:
                         self.log_warning(site, f'Missing geo location - possible ({round(g.x,6)}, {round(g.y,6)})')
                     else:
                         self.log_warning(site, f'Missing geo location ({site.latitude}, {site.longitude})')    
             else:
-                self.log_failure(site, f'Site name: {site.name}; Missing physical address')
+                self.log_failure(site, f'Site name: {site.name}, Missing physical address')
